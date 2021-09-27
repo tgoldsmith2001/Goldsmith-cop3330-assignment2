@@ -39,11 +39,26 @@ public class App {
         return input.nextLine();
     }
     static Boolean isAnagram(String Str1, String Str2){
-        int l=Str1.length();
-        for(int i=0;i<l;i++){
-            if(Str1.charAt(i)!=Str2.charAt(l-i-1))
+        char[]Str1Chars= sortString(Str1);
+        char[]Str2Chars=sortString(Str2);
+        for (int i = 0; i < Str1Chars.length; i++) {
+            if(Str1Chars[i]!=Str2Chars[i])
                 return false;
         }
         return true;
+    }
+    //Sorts the strings in alphabetical order
+    static char[] sortString(String Str){
+        char Strchar[]= Str.toCharArray();
+        for (int i = 0; i < Strchar.length-1; i++) {
+            for (int j = i+1; j < Strchar.length; j++) {
+                if((int)Strchar[i]>(int)Strchar[j]) {
+                    char temp = Strchar[i];
+                    Strchar[i]=Strchar[j];
+                    Strchar[j]=temp;
+                }
+            }
+        }
+        return Strchar;
     }
 }
